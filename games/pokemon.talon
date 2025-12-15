@@ -6,10 +6,10 @@
 # 3. Use the voice commands below
 
 mode: user.game_mode
+tag: user.game_pokemon
 -
 
-# Activate this game configuration
-game pokemon: skip()
+# Commands below only work when Pokemon is the active game
 
 # ============================================
 # MOVEMENT
@@ -64,3 +64,15 @@ spam: user.game_repeat("space", 10)
 # Quick menu navigation
 bag: user.game_keys("x down enter")
 pokemon: user.game_keys("x down down enter")
+
+# ============================================
+# REPEAT WITH NUMBER
+# ============================================
+# Say "whale five" to press W 5 times
+whale <number_small>: user.game_repeat("w", number_small)
+air <number_small>: user.game_repeat("a", number_small)
+sun <number_small>: user.game_repeat("s", number_small)
+delta <number_small>: user.game_repeat("d", number_small)
+interact <number_small>: user.game_repeat("space", number_small)
+
+

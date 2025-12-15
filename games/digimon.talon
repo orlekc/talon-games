@@ -7,10 +7,10 @@
 # 4. Say "game off" to exit
 
 mode: user.game_mode
+tag: user.game_digimon
 -
 
-# Activate this game configuration
-game digimon: skip()
+# Commands below only work when Digimon is the active game
 
 # ============================================
 # MOVEMENT
@@ -18,13 +18,13 @@ game digimon: skip()
 whale: user.game_key("w")
 air: user.game_key("a")
 sun: user.game_key("s")
-delta: user.game_key("d")
+drums: user.game_key("d")
 
 # Diagonal movement
 whale air: user.game_keys("w a")
-whale delta: user.game_keys("w d")
+whale drums: user.game_keys("w d")
 sun air: user.game_keys("s a")
-sun delta: user.game_keys("s d")
+sun drums: user.game_keys("s d")
 
 
 # ============================================
@@ -63,3 +63,13 @@ dodge attack: user.game_keys("shift space")
 
 # Run forward
 run: user.game_repeat("w", 5)
+
+# ============================================
+# REPEAT WITH NUMBER
+# ============================================
+# Say "whale five" to press W 5 times
+whale <number_small>: user.game_repeat("w", number_small)
+air <number_small>: user.game_repeat("a", number_small)
+sun <number_small>: user.game_repeat("s", number_small)
+delta <number_small>: user.game_repeat("d", number_small)
+attack <number_small>: user.game_repeat("space", number_small)

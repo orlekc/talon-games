@@ -129,6 +129,59 @@ class GameActions:
 
 # Game mode management
 _game_mode_active = False
+_active_game = None
+
+# Auto-discover games from games/ folder
+# Scan for .talon files and create tags/contexts dynamically
+import os
+from pathlib import Path
+
+# Get the directory where this file is located
+GAMES_DIR = Path(__file__).parent / "games"
+
+# Create a single context for managing game tags
+# This context is always active when in game mode
+game_ctx = Context()
+game_ctx.matches = r"""
+mode: user.game_mode
+"""
+
+# List to track discovered game names
+_discovered_games = []
+
+# IMPORTANT: Register tags FIRST before any .talon files load
+# This ensures tags exist when .talon files reference them
+if GAMES_DIR.exists():
+    print(f"[talon-games] Scanning for games in: {GAMES_DIR}")
+    
+    # Create all tags for discovered games
+    for talon_file in GAMES_DIR.glob("*.talon"):
+        if talon_file.name == "template.talon":
+            continue  # Skip template
+        
+        game_name = talon_file.stem
+        _discovered_games.append(game_name)
+        mod.tag(f"game_{game_name}", desc=f"{game_name.capitalize()} game is active")
+        print(f"[talon-games] Created tag for: {game_name}")
+    
+    # Auto-generate game_selection.talon with all discovered games
+    selection_file = Path(__file__).parent / "game_selection.talon"
+    try:
+        with open(selection_file, 'w') as f:
+            f.write("# Game selection commands\n")
+            f.write("# These work when in game mode to switch between games\n")
+            f.write("# Auto-generated - do not edit manually\n\n")
+            f.write("mode: user.game_mode\n")
+            f.write("-\n\n")
+            f.write("# Game activation commands\n")
+            for game_name in sorted(_discovered_games):
+                f.write(f"game {game_name}: user.game_load(\"{game_name}\")\n")
+        print(f"[talon-games] Generated game_selection.talon with {len(_discovered_games)} games")
+    except Exception as e:
+        print(f"[talon-games] Warning: Could not generate game_selection.talon: {e}")
+else:
+    print(f"[talon-games] WARNING: games/ folder not found at {GAMES_DIR}")
+
 
 @mod.action_class
 class GameModeActions:
@@ -143,13 +196,37 @@ class GameModeActions:
     
     def game_mode_disable():
         """Disable game mode"""
-        global _game_mode_active
+        global _game_mode_active, _active_game
         _game_mode_active = False
+        _active_game = None
         actions.mode.disable("user.game_mode")
         actions.mode.enable("command")
+        
+        # Clear all game tags
+        game_ctx.tags = []
+        
         app.notify("Game Mode: OFF")
         print("[game] Game mode disabled - normal Talon commands restored")
     
     def game_mode_is_active() -> bool:
         """Check if game mode is currently active"""
         return _game_mode_active
+    
+    def game_load(name: str):
+        """Load a specific game configuration (disables other games)"""
+        global _active_game
+        
+        # Check if game exists
+        if name not in _discovered_games:
+            available = ", ".join(_discovered_games)
+            app.notify(f"Unknown game: {name}")
+            print(f"[talon-games] Unknown game: {name}. Available: {available}")
+            return
+        
+        _active_game = name
+        
+        # Set only the selected game's tag on the game context
+        # This makes that game's .talon file active
+        game_ctx.tags = [f"user.game_{name}"]
+        app.notify(f"Game: {name.capitalize()}")
+        print(f"[talon-games] Loaded {name} controls - tag user.game_{name} activated")

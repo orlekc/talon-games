@@ -2,25 +2,23 @@
 # 
 # INSTRUCTIONS:
 # 1. Copy this file and rename it to yourgame.talon
-# 2. Replace all instances of "yourgame" with your actual game name
-# 3. Define your voice commands below
-# 4. Say "game mode" then "game yourgame" to activate
+# 2. Replace "yourgame" with your actual game name in the tag line below
+# 3. Delete the game activation command (it's auto-generated)
+# 4. Define your voice commands below
 # 
 # USAGE:
 # - Say "game mode" to enter game mode
-# - Say "game yourgame" to activate this configuration
+# - Say "game yourgame" to activate this configuration (auto-generated command)
 # - All commands below will be available
 # - All other Talon commands will be disabled for better recognition
 # - Say "game off" to exit game mode
 
 mode: user.game_mode
+tag: user.game_yourgame
 -
 
-# ============================================
-# GAME ACTIVATION
-# ============================================
-# Change "yourgame" to match your filename (without .talon)
-game yourgame: skip()
+# NOTE: The "game yourgame:" activation command is auto-generated
+# You don't need to add it here - it's in game_selection.talon
 
 
 # ============================================
@@ -59,7 +57,15 @@ five: user.game_key("5")
 # ============================================
 # REPEATED ACTIONS
 # ============================================
-# Press a key multiple times
+# Press a key multiple times with a number
+# Say "whale five" to press W 5 times
+whale <number_small>: user.game_repeat("w", number_small)
+air <number_small>: user.game_repeat("a", number_small)
+sun <number_small>: user.game_repeat("s", number_small)
+delta <number_small>: user.game_repeat("d", number_small)
+jump <number_small>: user.game_repeat("space", number_small)
+
+# Fixed repeat amounts (if you prefer)
 air five: user.game_repeat("a", 5)
 jump three: user.game_repeat("space", 3)
 
