@@ -7,4 +7,5 @@ mode: user.game_mode
 
 # Game activation commands
 game digimon: user.game_load("digimon")
+game fantasy: user.game_load("fantasy")
 game pokemon: user.game_load("pokemon")
