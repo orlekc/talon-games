@@ -1,33 +1,48 @@
-# Talon Games - Voice Control for Gaming
+# Talon Games
 
-**Easy-to-use voice control for video games with maximum recognition accuracy.**
+**Talon Games is a simple script library that makes playing games using talon easier.**
 
-Talon Games is a simple framework that makes playing games with voice commands reliable and accurate. When you activate game mode, **all non-gaming Talon commands are disabled**, dramatically improving voice recognition by eliminating thousands of potential word matches. Each game gets its own isolated set of commands, so your voice assistant only listens for the words you actually need.
+Control video games with your voice using [Talon Voice](https://talonvoice.com/). When you activate game mode, all non-gaming Talon commands are disabled, dramatically improving voice recognition accuracy. Each game gets its own isolated set of commands, making recognition faster and more reliable.
 
-## Why Talon Games?
+## Features
 
 - **Better Recognition**: Disables all other Talon commands when gaming - only your game's commands are active
 - **Game Isolation**: Each game has its own command set - no conflicts between games
-- **Reliable Input**: Uses [betterinput](https://github.com/lucillablessing/betterinput) to ensure keypresses are detected by games (holds keys long enough for games to register them)
+- **Reliable Input**: Uses [betterinput](https://github.com/lucillablessing/betterinput) to ensure keypresses are detected by games
 - **Easy to Share**: One `.talon` file per game - share your game configs with friends
-- **Zero Setup**: Drop a game file in the `games/` folder and it's automatically discovered
+- **Zero Configuration**: Drop a game file in the `games/` folder and it's automatically discovered(needs Talon restart for auto discovery)
+
+## Installation
+
+1. **Clone this repository** into your Talon user folder:
+   ```bash
+   cd ~/talon/user  # or C:\Users\YourName\AppData\Roaming\talon\user on Windows
+   git clone https://github.com/yourusername/talon-games.git
+   ```
+
+2. **Install betterinput** (required dependency):
+   ```bash
+   cd ~/talon/user
+   git clone https://github.com/lucillablessing/betterinput.git
+   ```
+
+3. **Restart Talon** - game commands are now available!
 
 ## Quick Start
 
-1. **Install betterinput** (required): Clone [betterinput](https://github.com/lucillablessing/betterinput) into your Talon user folder
-2. Say **"game mode"** to enter game mode (disables all other Talon commands)
-3. Say **"game pokemon"** (or your game name) to load that game's controls
-4. Use voice commands like "whale" (W), "air five" (press A 5 times), etc.
-5. Say **"game off"** to exit and restore normal Talon
+1. Say **"game mode"** to enter game mode (disables all other Talon commands)
+2. Say **"game pokemon"** (or your game name) to load that game's controls
+3. Use voice commands like "whale" (W), "air five" (press A 5 times), etc.
+4. Say **"game off"** to exit and restore normal Talon
 
 ## Creating a New Game
 
 1. Copy `games/template.talon` to `games/yourgame.talon`
 2. Replace `yourgame` with your game name in the tag line
-3. Define your voice commands (see examples below)
-4. Commands automatically available - no other setup needed!
+3. Define your voice commands (see API reference below)
+4. Commands are automatically available - no other setup needed!
 
-## Voice Command Syntax
+## API Reference
 
 ### Simple Key Press
 ```talon
@@ -69,11 +84,18 @@ Press shift and space at the same time.
 
 ## Configuration
 
-Settings can be adjusted globally in your settings.talon:
+Settings can be adjusted globally in your `settings.talon`:
 
 ```talon
 settings():
-    # HVoice Recognition is Improved
+    # How long to hold keys (milliseconds)
+    user.game_key_hold_ms = 80
+    
+    # Delay between sequential keys (milliseconds)
+    user.game_key_delay_ms = 50
+```
+
+## Why Voice Recognition is Improved
 
 **The Problem**: Normal Talon has thousands of active commands. When you say "whale", Talon has to check if you meant "whale", "wail", "well", "wall", "while", or hundreds of other similar-sounding words and commands.
 
@@ -83,44 +105,18 @@ settings():
 
 ## How It Works
 
-- **Game Mode**: Disables all other Talon commands (command mode off, user.game_mode on)
+- **Game Mode**: Disables all other Talon commands (command mode off, `user.game_mode` on)
 - **Auto-Discovery**: Scans `games/` folder and automatically registers all games
-- **Tag-Based Activation**: Each game has a tag (`user.game_pokemon`), only one active at a time
-- **betterinput Integration**: Uses betterinput for reliable key holds (80ms default = games detect them)
-- **Zero Configuration**: Drop a `.talon` file in `games/`, it's immediately availabl
+- **Tag-Based Activation**: Each game has a unique tag (e.g., `user.game_pokemon`), only one active at a time
+- **betterinput Integration**: Uses betterinput for reliable key holds (80ms default ensures games detect them)
+- **Zero Configuration**: Drop a `.talon` file in `games/`, it's immediately available
 
 ## Examples
 
-See `games/digimon.talon` for a complete example.
-
-## How It Works
-
-- **Game Mode**: Disables all other Talon commands for better voice recognition
-- **betterinput**: Uses the betterinput library for reliable key holds that games can detect
-- **Per-Game Files**: Each game gets its own `.talon` file with commands
-- **Automatic Context**: Commands only work when game mode is active
-
-## Troubleshooting
-
-**Commands not recognized:**
-- Make sure you said "game mode" first
-- Then say "game yourgame" to load your game file
-- Check the Talon log for errors
-Installation
-
-1. **Clone this repository** into your Talon user folder:
-   ```bash
-   cd ~/talon/user  # or C:\Users\YourName\AppData\Roaming\talon\user on Windows
-   git clone https://github.com/yourusername/talon-games.git
-   ```
-
-2. **Install betterinput** (required dependency):
-   ```bash
-   cd ~/talon/user
-   git clone https://github.com/lucillablessing/betterinput.git
-   ```
-
-3. **Restart Talon** - game commands are now available!
+See the included game files for complete examples:
+- `games/pokemon.talon` - RPG controls with movement and menu navigation
+- `games/inkbound.talon` - Turn-based tactical game with abilities and combat
+- `games/template.talon` - Template with all available functions documented
 
 ## Sharing Game Files
 
@@ -129,6 +125,18 @@ To share your game configuration:
 2. Send it to friends
 3. They drop it in their `talon-games/games/` folder
 4. It works immediately - no configuration needed!
+
+## Troubleshooting
+
+**Commands not recognized:**
+- Make sure you said "game mode" first
+- Then say "game yourgame" to load your game file
+- Check the Talon log for errors
+
+**Keys not registering in game:**
+- Increase hold duration: `user.game_key("w", 150)` 
+- Check that betterinput is installed correctly
+- Try running Talon as administrator on Windows
 
 ## Contributing
 
@@ -141,13 +149,4 @@ Have a great game configuration? Submit a PR with your `.talon` file in the `gam
 
 ## License
 
-MIT - Feel free to use, modify, and share!ames/games/` folder
-4. It works immediately!
-
-## Advanced: Future Extensions
-
-Not yet implemented but designed for:
-- Auto-detection of game windows
-- Saved macro sequences
-- Mouse control integration
-- Game-specific settings per file
+MIT - Feel free to use, modify, and share!
