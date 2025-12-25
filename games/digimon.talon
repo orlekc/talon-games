@@ -1,4 +1,5 @@
 # Digimon World voice controls
+# This is an example file, it hasn't been tested
 # 
 # To use:
 # 1. Say "game mode" to enter game mode
