@@ -17,7 +17,7 @@ Control video games with your voice using [Talon Voice](https://talonvoice.com/)
 1. **Clone this repository** into your Talon user folder:
    ```bash
    cd ~/talon/user  # or C:\Users\YourName\AppData\Roaming\talon\user on Windows
-   git clone https://github.com/yourusername/talon-games.git
+   git clone https://github.com/orlekc/talon-games.git
    ```
 
 2. **Install betterinput** (required dependency):
