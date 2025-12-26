@@ -95,6 +95,37 @@ long press: user.game_key("e", 200)
 
 
 # ============================================
+# HOLD WITH DURATION MULTIPLIER
+# ============================================
+# Hold a key for (number * 100) milliseconds
+# Say "each five" to hold W for 500ms (5 * 100)
+# This is useful for charging abilities or long presses
+each <number_small>: user.game_hold("w", number_small)
+charge <number_small>: user.game_hold("space", number_small)
+boost <number_small>: user.game_hold("shift", number_small)
+
+# Fixed duration holds (if you prefer)
+each three: user.game_hold("w", 3)  # Hold W for 300ms
+charge five: user.game_hold("space", 5)  # Hold space for 500ms
+
+
+# ============================================
+# TOGGLE KEYS (ON/OFF)
+# ============================================
+# Toggle a key on (hold down) or off (release)
+# Say "red" once to hold W down, say "red" again to release it
+# Useful for auto-run, continuous movement, or sustained actions
+red: user.game_toggle("w")
+auto run: user.game_toggle("w")
+auto shoot: user.game_toggle("e")
+crouch toggle: user.game_toggle("ctrl")
+
+# Multiple toggle options for same key
+walk toggle: user.game_toggle("shift")
+sprint toggle: user.game_toggle("shift")
+
+
+# ============================================
 # UTILITY KEYS
 # ============================================
 escape: user.game_key("escape")

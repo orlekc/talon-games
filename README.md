@@ -10,14 +10,14 @@ Control video games with your voice using [Talon Voice](https://talonvoice.com/)
 - **Game Isolation**: Each game has its own command set - no conflicts between games
 - **Reliable Input**: Uses [betterinput](https://github.com/lucillablessing/betterinput) to ensure keypresses are detected by games
 - **Easy to Share**: One `.talon` file per game - share your game configs with friends
-- **Zero Configuration**: Drop a game file in the `games/` folder and it's automatically discovered(needs Talon restart for auto discovery)
+- **Zero Configuration**: Drop a game file in the `games/` folder and it's automatically discovered(needs Talon restart)
 
 ## Installation
 
 1. **Clone this repository** into your Talon user folder:
    ```bash
    cd ~/talon/user  # or C:\Users\YourName\AppData\Roaming\talon\user on Windows
-   git clone https://github.com/orlekc/talon-games.git
+   git clone https://github.com/yourusername/talon-games.git
    ```
 
 2. **Install betterinput** (required dependency):
@@ -82,6 +82,20 @@ strafe shoot: user.game_simultaneous("shift space")
 ```
 Press shift and space at the same time.
 
+### Hold with Duration Multiplier
+```talon
+each <number_small>: user.game_hold("w", number_small)
+charge five: user.game_hold("space", 5)
+```
+Hold a key for (number × 100) milliseconds. Saying "each five" holds W for 500ms. Perfect for charging abilities or long presses in games.
+
+### Toggle Keys On/Off
+```talon
+red: user.game_toggle("w")
+auto run: user.game_toggle("shift")
+```
+Toggle a key to stay pressed. First call holds the key down, second call releases it. Useful for auto-run, continuous movement, or sustained actions like crouching.
+
 ## Configuration
 
 Settings can be adjusted globally in your `settings.talon`:
@@ -109,6 +123,7 @@ settings():
 - **Auto-Discovery**: Scans `games/` folder and automatically registers all games
 - **Tag-Based Activation**: Each game has a unique tag (e.g., `user.game_pokemon`), only one active at a time
 - **betterinput Integration**: Uses betterinput for reliable key holds (80ms default ensures games detect them)
+- **Toggle State Tracking**: Remembers which keys are toggled on and automatically releases them when exiting game mode
 - **Zero Configuration**: Drop a `.talon` file in `games/`, it's immediately available
 
 ## Examples

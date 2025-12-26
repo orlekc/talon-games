@@ -1,6 +1,6 @@
 # Inkbound game voice controls
 # Inkbound is a turn-based tactical roguelike by Shiny Shoe
-# 
+# change Mouse binding to "t"
 # To use:
 # 1. Say "game mode" to enter game mode
 # 2. Say "game inkbound" to activate these controls
@@ -20,10 +20,10 @@ air: user.game_key("a")
 sun: user.game_key("s")
 drums: user.game_key("d")
 
-up: user.game_key("up")
-down: user.game_key("down")
-left: user.game_key("left")
-right: user.game_key("right")
+#up: user.game_key("up")
+#down: user.game_key("down")
+#left: user.game_key("left")
+#right: user.game_key("right")
 
 # Movement with numbers
 whale <number_small>: user.game_repeat("w", number_small)
@@ -35,21 +35,18 @@ drums <number_small>: user.game_repeat("d", number_small)
 # ============================================
 # ABILITY KEYS (1-4 for abilities, Q/E for items)
 # ============================================
-ability one: user.game_key("1")
-ability two: user.game_key("2")
-ability three: user.game_key("3")
-ability four: user.game_key("4")
 
 # Quick ability casting
 one: user.game_key("1")
 two: user.game_key("2")
 three: user.game_key("3")
 four: user.game_key("4")
+five: user.game_key("5")
 
 # Item/Consumable slots
 item left: user.game_key("q")
 item right: user.game_key("e")
-quick item: user.game_key("q")
+#quick item: user.game_key("q")
 
 
 # ============================================
@@ -84,6 +81,8 @@ interact: user.game_key("f")
 use: user.game_key("f")
 pickup: user.game_key("f")
 examine: user.game_key("e")
+act: user.game_key("e")
+look: user.game_key("t")
 touch: mouse_click(0)
 drag: user.mouse_drag(0)
 
@@ -98,7 +97,6 @@ hold shift: user.game_key("shift", 100)
 zoom in: user.game_key("=")
 zoom out: user.game_key("-")
 
-
 # ============================================
 # TARGETING
 # ============================================
@@ -110,8 +108,8 @@ cycle target: user.game_key("tab")
 # ============================================
 # SOCIAL/MULTIPLAYER
 # ============================================
-chat: user.game_key("enter")
-emote: user.game_key("t")
+#chat: user.game_key("enter")
+#emote: user.game_key("t")
 
 
 # ============================================
@@ -127,6 +125,8 @@ nine: user.game_key("9")
 # ============================================
 # FUNCTION KEYS
 # ============================================
+sit: user.game_simultaneous("alt m")
+end: user.game_key("b")
 help: user.game_key("f1")
 quick save: user.game_key("f5")
 quick load: user.game_key("f9")

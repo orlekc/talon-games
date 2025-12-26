@@ -125,11 +125,41 @@ class GameActions:
         # Release all keys
         for key in key_list:
             actions.key(f"{key}:up")
+    
+    def game_hold(key: str, multiplier: int):
+        """Hold a key for (multiplier * 100) milliseconds
+        
+        Example: game_hold("w", 5) holds W for 500ms
+        """
+        hold_duration = multiplier * 100
+        print(f"[game] Holding '{key}' for {hold_duration}ms (multiplier: {multiplier})")
+        press_key(key, hold_duration)
+    
+    def game_toggle(key: str):
+        """Toggle a key on/off - press to hold down, press again to release
+        
+        Example: First call holds W down, second call releases W
+        """
+        global _toggled_keys
+        
+        if key in _toggled_keys and _toggled_keys[key]:
+            # Key is currently held - release it
+            print(f"[game] Toggle OFF: '{key}'")
+            actions.key(f"{key}:up")
+            _toggled_keys[key] = False
+        else:
+            # Key is not held - press it down
+            print(f"[game] Toggle ON: '{key}'")
+            actions.key(f"{key}:down")
+            _toggled_keys[key] = True
 
 
 # Game mode management
 _game_mode_active = False
 _active_game = None
+
+# Toggle state tracking - stores which keys are currently toggled on
+_toggled_keys = {}
 
 # Auto-discover games from games/ folder
 # Scan for .talon files and create tags/contexts dynamically
@@ -196,7 +226,15 @@ class GameModeActions:
     
     def game_mode_disable():
         """Disable game mode"""
-        global _game_mode_active, _active_game
+        global _game_mode_active, _active_game, _toggled_keys
+        
+        # Release any toggled keys before disabling
+        for key, is_pressed in list(_toggled_keys.items()):
+            if is_pressed:
+                print(f"[game] Releasing toggled key: '{key}'")
+                actions.key(f"{key}:up")
+        _toggled_keys.clear()
+        
         _game_mode_active = False
         _active_game = None
         actions.mode.disable("user.game_mode")
