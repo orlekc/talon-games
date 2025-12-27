@@ -96,6 +96,13 @@ auto run: user.game_toggle("shift")
 ```
 Toggle a key to stay pressed. First call holds the key down, second call releases it. Useful for auto-run, continuous movement, or sustained actions like crouching.
 
+### Release All Toggled Keys
+```talon
+release all: user.game_toggle_all_off()
+toggle off: user.game_toggle_all_off()
+```
+Release all currently toggled keys at once. If you've toggled W, I, and Shift on, this releases all of them with a single command instead of toggling each one individually.
+
 ## Configuration
 
 Settings can be adjusted globally in your `settings.talon`:

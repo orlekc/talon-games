@@ -124,6 +124,12 @@ crouch toggle: user.game_toggle("ctrl")
 walk toggle: user.game_toggle("shift")
 sprint toggle: user.game_toggle("shift")
 
+# Release all toggled keys at once
+# If you've toggled W, E, and Shift on, this releases all of them
+release all: user.game_toggle_all_off()
+toggle off: user.game_toggle_all_off()
+clear toggles: user.game_toggle_all_off()
+
 
 # ============================================
 # UTILITY KEYS

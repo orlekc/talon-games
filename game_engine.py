@@ -151,8 +151,27 @@ class GameActions:
             # Key is not held - press it down
             print(f"[game] Toggle ON: '{key}'")
             actions.key(f"{key}:down")
-            _toggled_keys[key] = True
-
+            _toggled_keys[key] = True    
+    def game_toggle_all_off():
+        """Release all currently toggled keys
+        
+        Useful for quickly releasing all held keys without toggling each one individually
+        """
+        global _toggled_keys
+        
+        released_keys = []
+        for key, is_pressed in list(_toggled_keys.items()):
+            if is_pressed:
+                print(f"[game] Releasing toggled key: '{key}'")
+                actions.key(f"{key}:up")
+                _toggled_keys[key] = False
+                released_keys.append(key)
+        
+        if released_keys:
+            app.notify(f"Released: {', '.join(released_keys)}")
+            print(f"[game] Released {len(released_keys)} toggled keys")
+        else:
+            print("[game] No toggled keys to release")
 
 # Game mode management
 _game_mode_active = False
