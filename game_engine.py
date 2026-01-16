@@ -240,7 +240,6 @@ class GameModeActions:
         _game_mode_active = True
         actions.mode.disable("command")
         actions.mode.enable("user.game_mode")
-        app.notify("Game Mode: ON")
         print("[game] Game mode enabled - other Talon commands disabled")
     
     def game_mode_disable():
@@ -262,7 +261,6 @@ class GameModeActions:
         # Clear all game tags
         game_ctx.tags = []
         
-        app.notify("Game Mode: OFF")
         print("[game] Game mode disabled - normal Talon commands restored")
     
     def game_mode_is_active() -> bool:

@@ -15,10 +15,10 @@ tag: user.game_inkbound
 # ============================================
 # MOVEMENT (WASD or Arrow Keys)
 # ============================================
-whale: user.game_key("w")
-air: user.game_key("a")
-sun: user.game_key("s")
-drums: user.game_key("d")
+#whale: user.game_key("w")
+#air: user.game_key("a")
+#sun: user.game_key("s")
+#drums: user.game_key("d")
 
 #up: user.game_key("up")
 #down: user.game_key("down")
@@ -26,10 +26,10 @@ drums: user.game_key("d")
 #right: user.game_key("right")
 
 # Movement with numbers
-whale <number_small>: user.game_repeat("w", number_small)
-air <number_small>: user.game_repeat("a", number_small)
-sun <number_small>: user.game_repeat("s", number_small)
-drums <number_small>: user.game_repeat("d", number_small)
+#whale <number_small>: user.game_repeat("w", number_small)
+#air <number_small>: user.game_repeat("a", number_small)
+#sun <number_small>: user.game_repeat("s", number_small)
+#drums <number_small>: user.game_repeat("d", number_small)
 
 
 # ============================================
@@ -37,11 +37,11 @@ drums <number_small>: user.game_repeat("d", number_small)
 # ============================================
 
 # Quick ability casting
-one: user.game_key("1")
-two: user.game_key("2")
-three: user.game_key("3")
-four: user.game_key("4")
-five: user.game_key("5")
+air: user.game_key("1")
+bat: user.game_key("2")
+cap: user.game_key("3")
+drums: user.game_key("4")
+sit: user.game_key("5")
 
 # Item/Consumable slots
 item left: user.game_key("q")
@@ -52,15 +52,15 @@ item right: user.game_key("e")
 # ============================================
 # COMBAT ACTIONS
 # ============================================
-attack: user.game_key("space")
-confirm: user.game_key("space")
-select: user.game_key("enter")
-cancel: user.game_key("escape")
+#attack: user.game_key("space")
+#confirm: user.game_key("space")
+#select: user.game_key("enter")
+#esc: user.game_key("escape")
 back: user.game_key("escape")
 
 # End turn
-end turn: user.game_key("space")
-pass: user.game_key("space")
+#end turn: user.game_key("space")
+#pass: user.game_key("space")
 
 
 # ============================================
@@ -77,10 +77,10 @@ tab: user.game_key("tab")
 # ============================================
 # INTERACTION
 # ============================================
-interact: user.game_key("f")
+#interact: user.game_key("f")
 use: user.game_key("f")
-pickup: user.game_key("f")
-examine: user.game_key("e")
+#pickup: user.game_key("f")
+#examine: user.game_key("e")
 act: user.game_key("e")
 look: user.game_key("t")
 touch: mouse_click(0)
@@ -89,20 +89,20 @@ drag: user.mouse_drag(0)
 # ============================================
 # UI AND SHORTCUTS
 # ============================================
-pause: user.game_key("escape")
-skip: user.game_key("space")
-hold shift: user.game_key("shift", 100)
+#pause: user.game_key("escape")
+#skip: user.game_key("space")
+#hold shift: user.game_key("shift", 100)
 
 # Zoom/Camera
-zoom in: user.game_key("=")
-zoom out: user.game_key("-")
+#zoom in: user.game_key("=")
+#zoom out: user.game_key("-")
 
 # ============================================
 # TARGETING
 # ============================================
-target next: user.game_key("tab")
-target previous: user.game_key("shift-tab")
-cycle target: user.game_key("tab")
+#target next: user.game_key("tab")
+#target previous: user.game_key("shift-tab")
+#cycle target: user.game_key("tab")
 
 
 # ============================================
@@ -125,32 +125,32 @@ nine: user.game_key("9")
 # ============================================
 # FUNCTION KEYS
 # ============================================
-sit: user.game_simultaneous("alt m")
+#sit: user.game_simultaneous("alt m")
 end: user.game_key("b")
-help: user.game_key("f1")
-quick save: user.game_key("f5")
-quick load: user.game_key("f9")
+#help: user.game_key("f1")
+#quick save: user.game_key("f5")
+#quick load: user.game_key("f9")
 
 
 # ============================================
 # REPEAT ACTIONS
 # ============================================
 # Spam space for skipping dialogue/animations
-spam: user.game_repeat("space", 10)
-spam fast: user.game_repeat("space", 20)
+#spam: user.game_repeat("space", 10)
+#spam fast: user.game_repeat("space", 20)
 
 # Repeat abilities
-ability one <number_small>: user.game_repeat("1", number_small)
-ability two <number_small>: user.game_repeat("2", number_small)
-ability three <number_small>: user.game_repeat("3", number_small)
-ability four <number_small>: user.game_repeat("4", number_small)
+#ability one <number_small>: user.game_repeat("1", number_small)
+#ability two <number_small>: user.game_repeat("2", number_small)
+#ability three <number_small>: user.game_repeat("3", number_small)
+#ability four <number_small>: user.game_repeat("4", number_small)
 
 
 # ============================================
 # COMBOS
 # ============================================
 # Quick ability combos
-combo one two: user.game_keys("1 2")
-combo one three: user.game_keys("1 3")
-combo two three: user.game_keys("2 3")
-quick cast all: user.game_keys("1 2 3 4")
+#combo one two: user.game_keys("1 2")
+#combo one three: user.game_keys("1 3")
+#combo two three: user.game_keys("2 3")
+#quick cast all: user.game_keys("1 2 3 4")
