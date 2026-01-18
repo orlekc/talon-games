@@ -7,7 +7,7 @@
 # 3. Use the voice commands below
 
 mode: user.game_mode
-tag: user.game_trails_beyond_the_horizon
+tag: user.game_horizon
 -
 
 # ============================================
@@ -17,6 +17,7 @@ whale: user.game_key("w")
 air: user.game_key("a")
 sun: user.game_key("s")
 drums: user.game_key("d")
+red: user.game_key("r")
 
 # Movement with repeat
 whale <number_small>: user.game_repeat("w", number_small)
@@ -33,6 +34,11 @@ use topic: user.game_key("r")
 deploy shards: user.game_key("r")
 dash: user.game_key("shift")
 walk: user.game_key("alt")
+cap: user.game_key("\\")
+cap <number_small>: user.game_repeat("\\", number_small)
+look: user.game_key("[")
+quick art: user.game_hold("f", 7)
+camera: user.game_key("]")
 
 
 # ============================================
@@ -40,21 +46,28 @@ walk: user.game_key("alt")
 # ============================================
 confirm: user.game_key("enter")
 cancel: user.game_key("escape")
-up: user.game_key("w")
-down: user.game_key("s")
-left: user.game_key("a")
-right: user.game_key("d")
 
 menu action one: user.game_key("f")
 menu action two: user.game_key("r")
 
 previous tab: user.game_key("q")
 next tab: user.game_key("e")
-tab queue: user.game_key("q")
-tab east: user.game_key("e")
+tab left: user.game_key("q")
+tab right: user.game_key("e")
 
 previous page: user.game_key("z")
 next page: user.game_key("c")
+
+urge: user.game_key("up")
+harp: user.game_key("left")
+crunch: user.game_key("right")
+made: user.game_key("down")
+urge <number_small>: user.game_repeat("up", number_small)
+harp <number_small>: user.game_repeat("left", number_small)
+crunch <number_small>: user.game_repeat("righ", number_small)
+made <number_small>: user.game_repeat("down", number_small)
+
+each: user.game_key("escape")
 
 
 # ============================================
@@ -86,12 +99,14 @@ boost: user.game_key("c")
 show sub info: user.game_key("z")
 shard command: user.game_key("t")
 skip: user.game_key("escape")
+enter: user.game_key("enter")
+zoc: user.game_hold("c",11)
 
 
 # ============================================
 # SHORTCUTS
 # ============================================
-shortcut menu: user.game_key("v")
+shortcut menu: user.game_key("y")
 open camp: user.game_key("escape")
 open notebook: user.game_key("tab")
 notebook: user.game_key("tab")
