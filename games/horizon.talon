@@ -38,7 +38,7 @@ cap: user.game_key("\\")
 cap <number_small>: user.game_repeat("\\", number_small)
 look: user.game_key("[")
 quick art: user.game_hold("f", 7)
-camera: user.game_key("]")
+camera: user.game_key("]", 2)
 
 
 # ============================================
@@ -100,7 +100,8 @@ show sub info: user.game_key("z")
 shard command: user.game_key("t")
 skip: user.game_key("escape")
 enter: user.game_key("enter")
-zoc: user.game_hold("c",11)
+zoc: user.game_hold("c", 11)
+release shards: user.game_hold("esc", 30)
 
 
 # ============================================
