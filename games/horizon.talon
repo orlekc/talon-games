@@ -38,7 +38,7 @@ cap: user.game_key("\\")
 cap <number_small>: user.game_repeat("\\", number_small)
 look: user.game_key("[")
 quick art: user.game_hold("f", 7)
-camera: user.game_key("]", 2)
+camera: user.game_hold("]", 3k)
 
 
 # ============================================
@@ -120,7 +120,7 @@ travel menu: user.game_key("n")
 contact lines: user.game_key("x")
 
 # Direct shortcuts
-party lineup: user.game_key("p")
+party lineup: user.game_simultaneous("p")
 timely terms: user.game_key("t")
 healing arts: user.game_key("h")
 fishing: user.game_key("g")
@@ -156,5 +156,5 @@ quick items: user.game_key("i")
 # UTILITY COMMANDS
 # ============================================
 # Spam confirm (useful for dialogue)
-spam confirm: user.game_repeat("enter", 10)
+spam confirm: user.game_repeat("enter", 4)
 spam skip: user.game_repeat("escape", 5)
