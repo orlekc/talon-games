@@ -38,7 +38,7 @@ cap: user.game_key("\\")
 cap <number_small>: user.game_repeat("\\", number_small)
 look: user.game_key("[")
 quick art: user.game_hold("f", 7)
-camera: user.game_hold("]", 3k)
+point: user.game_hold("]", 3)
 
 
 # ============================================
